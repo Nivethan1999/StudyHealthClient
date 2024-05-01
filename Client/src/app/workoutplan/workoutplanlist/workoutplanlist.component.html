@@ -1,0 +1,16 @@
+
+<div class="container">
+    <table class="styled-table">
+        <tr>
+            <th>Workoutname</th>
+            <th>Exercises</th>
+    
+        </tr>
+        <tr *ngFor="let workoutplan of WorkoutPlans$ | async" [routerLink]="['./', workoutplan.workoutPlanID]">
+            <td>{{workoutplan.workoutName}}</td>
+            <td>{{workoutplan.exerciseIDs.length}}</td>
+        </tr>
+    </table>
+    <button mat-mini-fab color="primary" (click)="redirectToAddWorkoutPlan()">Add</button>    
+
+</div>

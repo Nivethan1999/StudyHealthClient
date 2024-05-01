@@ -1,0 +1,81 @@
+.hero {
+    background: linear-gradient(to right, #3498db, #8e44ad);
+    color: #fff;
+    padding: 100px 0;
+    text-align: center;
+    height: 69.4vh; /* 100% af visuel hÃ¸jde */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  
+  h1 {
+    font-size: 3rem;
+    margin-bottom: 20px;
+    font-family:'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+  }
+  
+  p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+    font-family:'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+  }
+  
+  .btn-primary {
+    background-color: #fff;
+    color: #3498db;
+    font-weight: bold;
+    font-size: 1.2rem;
+    padding: 10px 20px;
+    border: 2px solid #fff;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+    font-family:'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+  }
+  
+  .btn-primary:hover {
+    background-color: #3498db;
+    color: #fff;
+  }
+
+  .how-it-works {
+    background-color: #ffffff;
+    padding: 40px 0;
+    text-align: center;
+    font-family: 'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+  }
+  
+  .feature-box-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+    
+  .feature-box {
+    margin: 0 20px;
+    max-width: 300px;
+    text-align: center;
+  }
+
+  .feature-box h2 {
+    font-family:'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+    font-weight: bold;
+  }
+  
+  .feature-box h3 {
+    margin-bottom: 10px;
+    font-family:'Gill Sans', 'Gill Sans MT', 'Trebuchet MS', sans-serif;
+  }
+  
+  @media screen and (max-width: 480px) {
+    .feature-box-container {
+      flex-direction: column;
+      max-height: 35%;
+
+    }
+    .hero {
+      max-height: 25%;
+    }
+    
+  }

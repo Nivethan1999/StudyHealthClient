@@ -1,0 +1,97 @@
+<div class="container">
+  <div class="overhead">
+    <h1>Daily overview</h1>
+  </div>
+  <div class="head">
+    <div class="workout" *ngIf="workoutData$ | async as workoutData">
+      <mat-card>
+        <h3>Daily workout</h3>
+        <h1>{{ workoutData }}m</h1>
+      </mat-card>
+    </div>
+
+    <div class="dailystudy" *ngIf="dailystudyData$ | async as dailystudyData">
+      <mat-card>
+        <h3>Daily course hours</h3>
+        <h1>{{ dailystudyData }} h</h1>
+        <!-- Display total duration directly -->
+      </mat-card>
+    </div>
+
+    <div class="dailyintake" *ngIf="dailyIntakeData$ | async as dailyintakeData">
+      <mat-card>
+        <h3>Daily Intake</h3>
+        <h1>{{ dailyintakeData }} kcal</h1>
+      </mat-card>
+    </div>
+  </div>
+</div>
+
+<div class="smileycontainer">
+<ng-container *ngIf="workoutData$ | async as workoutData">
+    <mat-card class="smiley">
+      <p>
+        <span *ngIf="workoutData === null">No workout data 
+          <span class="material-symbols-outlined">
+            sentiment_sad
+            </span>
+        </span>
+        <span *ngIf="workoutData !== null && workoutData < 60">Try to exercise a bit today 
+          <span class="material-symbols-outlined" style="color: red;">
+            sentiment_sad
+            </span>
+        </span>
+        <span *ngIf="workoutData >= 60 && workoutData <= 120">
+          Well done nice training 
+          <span class="material-symbols-outlined" style="color: #5bb450	;">
+            sentiment_neutral
+            </span>
+        </span>
+        <span *ngIf="workoutData > 120">try to relax you have worked out a lot 
+          <span class="material-symbols-outlined" style="color: green;">
+            mood
+            </span>
+        </span>
+      </p>
+      </mat-card>
+    </ng-container>
+      <ng-container *ngIf="dailystudyData$ | async as dailystudyData">
+        <mat-card class="smiley">
+        <p>
+        <span *ngIf="dailystudyData === null">No study data 
+          <span class="material-symbols-outlined " style="color: red;">sentiment_sad</span>
+        </span>
+        <span *ngIf="dailystudyData !== null && dailystudyData < 4">Try to study more 
+          <span class="material-symbols-outlined" style="color: red;">sentiment_sad</span>
+        </span>
+        <span *ngIf="dailystudyData >= 4 && dailystudyData <= 8"> Nice study 
+          <span class="material-symbols-outlined" style="color: greenyellow;">
+            sentiment_neutral
+            </span>
+        </span>
+        <span *ngIf="dailystudyData > 8"> Try to relax with the studies 
+          <span class="material-symbols-outlined" style="color: green;">mood</span> 
+        </span>
+      </p>      
+    </mat-card>
+  </ng-container>
+</div>
+
+<div class="container">
+  <div class="overhead">
+    <h1>Weekly overview</h1>
+  </div>
+  <div class="head">
+    <div class="workoutchart">
+      <canvas baseChart [datasets]="[{ data: weeklyWorkoutData, label: 'Workout' }]" [labels]="weeklyLabels" [options]="chartOptions" [legend]="chartLegend" [type]="chartType"> </canvas>
+    </div>
+
+    <div class="dailystudychart">
+      <canvas baseChart [datasets]="[{ data: weeklyStudyData, label: 'Study' }]" [labels]="weeklyLabels" [options]="chartOptions" [legend]="chartLegend" [type]="chartType"> </canvas>
+    </div>
+
+    <div class="dailyintakechart">
+      <canvas baseChart [datasets]="[{ data: weeklyIntakeData, label: 'Intake' }]" [labels]="weeklyLabels" [options]="chartOptions" [legend]="chartLegend" [type]="chartType"> </canvas>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,16 @@
+<nav>
+  <!-- Show these buttons if the user is not logged in -->
+  <button *ngIf="!(authService.isLoggedIn | async)" mat-raised-button color="primary" routerLink="/" routerLinkActive="active" ariaCurrentWhenActive="page">Home</button>
+  <button *ngIf="!(authService.isLoggedIn | async)" mat-raised-button color="primary" routerLink="/login" routerLinkActive="active" ariaCurrentWhenActive="page">Login</button>
+  <button *ngIf="!(authService.isLoggedIn | async)" mat-raised-button color="primary" routerLink="/register" routerLinkActive="active" ariaCurrentWhenActive="page">Register</button>
+  
+
+
+  <!-- Show these buttons if the user is logged in -->
+  <button *ngIf="authService.isLoggedIn | async" mat-raised-button color="primary" routerLink="/dashboard" routerLinkActive="active" ariaCurrentWhenActive="page">Dashboard</button>
+  <button *ngIf="authService.isLoggedIn | async" mat-raised-button color="primary" routerLink="/workoutplan/" routerLinkActive="active" ariaCurrentWhenActive="page">WorkoutPlan</button>
+  <button *ngIf="authService.isLoggedIn | async" mat-raised-button color="primary" routerLink="/workoutplan/exercise" routerLinkActive="active" ariaCurrentWhenActive="page">Exercise</button>
+  <button *ngIf="authService.isLoggedIn | async" mat-raised-button color="primary" routerLink="/dailyintake/" routerLinkActive="active" ariaCurrentWhenActive="page">DailyIntake</button>
+  <button *ngIf="authService.isLoggedIn | async" mat-raised-button color="primary" routerLink="/workout" routerLinkActive="active" ariaCurrentWhenActive="page">Workout</button>
+  <button *ngIf="authService.isLoggedIn | async" mat-raised-button color="primary" routerLink="/course" routerLinkActive="active" ariaCurrentWhenActive="page">Course</button>
+</nav>

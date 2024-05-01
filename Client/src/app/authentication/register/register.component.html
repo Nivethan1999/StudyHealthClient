@@ -1,0 +1,43 @@
+<mat-card>
+        <h2>Register</h2>
+        <form [formGroup]="RegisterForm" class="mat-form">
+            
+                <mat-form-field>
+                    <mat-label>Username</mat-label>
+                    <input matInput type="text" id="Username" formControlName="Username" placeholder="Username">
+                    <mat-error *ngIf="RegisterForm.get('Username')?.touched && RegisterForm.get('Username')?.invalid">Insert your Username.</mat-error>
+                </mat-form-field>
+            
+            
+                <mat-form-field>
+                    <mat-label>Email</mat-label>
+                    <input matInput type="Email" id="Email" formControlName="Email" placeholder="Email">
+                    <mat-error *ngIf="RegisterForm.get('Email')?.touched && RegisterForm.get('Email')?.invalid">Insert your email.</mat-error>
+                </mat-form-field>
+            
+            
+                <mat-form-field>
+                    <mat-label>Password</mat-label>
+                    <input matInput type="password" id="Password" formControlName="Password" placeholder="Password">
+                    <mat-error *ngIf="RegisterForm.get('Password')?.touched && RegisterForm.get('Password')?.invalid">Insert your Password.</mat-error>
+                </mat-form-field>
+            
+            
+                <mat-form-field>
+                    <mat-label>Weight</mat-label>
+                    <input matInput type="number" id="Weight" formControlName="Weight" placeholder="Weight">
+                    <!-- <mat-error *ngIf="RegisterForm.get('Weight')?.touched && RegisterForm.get('Weight')?.invalid">Insert your Weight.</mat-error> -->
+                </mat-form-field>
+            
+            
+                <mat-form-field>
+                    <mat-label>Height</mat-label>
+                    <input matInput type="number" id="Height" formControlName="Height" placeholder="Height">
+                    <!-- <mat-error *ngIf="RegisterForm.get('Height')?.touched && RegisterForm.get('Height')?.invalid">Insert your Height.</mat-error> -->
+                </mat-form-field>
+            
+
+            <button mat-raised-button color="primary" (click)="onRegisterData()" [disabled]="RegisterForm.invalid">Register</button>
+
+        </form>
+    </mat-card>

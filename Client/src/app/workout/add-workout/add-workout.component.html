@@ -1,0 +1,37 @@
+<form [formGroup]="WorkoutForm">
+    <!-- <mat-form-field>
+      <mat-label>Date</mat-label>
+      <input matInput type="text" id="Date" formControlName="Date">
+      <mat-error *ngIf="WorkoutForm.get('Date')?.touched && WorkoutForm.get('Date')?.hasError('required')">Insert.</mat-error>
+    </mat-form-field> -->
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker" 
+        formControlName="Date"
+        [value]="formattedDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+
+    <mat-form-field>
+        <mat-label>Duration in minutes</mat-label>
+        <input matInput type="number" id="Duration" formControlName="Duration">
+        <mat-error *ngIf="WorkoutForm.get('Duration')?.touched && WorkoutForm.get('Duration')?.hasError('required')">Insert.</mat-error>
+      </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Workout Name</mat-label>
+      <mat-select formControlName="WorkoutPlanID" >
+        
+        <mat-option *ngFor="let workoutplans of WorkoutPlans$ | async" [value]="workoutplans.workoutPlanID">
+          {{ workoutplans.workoutName }} 
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <button mat-raised-button color="primary" (click)="registerWorkout()" [disabled]="WorkoutForm.invalid">Register</button>
+  </form>
+  

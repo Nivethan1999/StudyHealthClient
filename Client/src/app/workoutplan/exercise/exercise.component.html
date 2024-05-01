@@ -1,0 +1,39 @@
+<p>exercise works!</p>
+<mat-card>
+    <h2>Add Acitivty</h2>
+    <form [formGroup]="ExerciseForm" class="mat-form">
+        
+            <mat-form-field>
+                <mat-label>Name</mat-label>
+                <input matInput type="text" id="Name" formControlName="Name" placeholder="Name">
+                <mat-error *ngIf="ExerciseForm.get('Name')?.touched && ExerciseForm.get('Name')?.invalid">Insert your Username.</mat-error>
+            </mat-form-field>
+        
+        
+            <mat-form-field>
+                <mat-label>Type</mat-label>
+                <input matInput type="text" id="Type" formControlName="Type" placeholder="Type">
+                <mat-error *ngIf="ExerciseForm.get('Type')?.touched && ExerciseForm.get('Type')?.invalid">Insert your Type.</mat-error>
+            </mat-form-field>
+        
+        
+            <mat-form-field>
+                <mat-label>Iterations</mat-label>
+                <input matInput type="text" id="Iterations" formControlName="Iterations" placeholder="Iterations">
+                <mat-error *ngIf="ExerciseForm.get('Iterations')?.touched && ExerciseForm.get('Iterations')?.invalid">Insert your Iterations.</mat-error>
+            </mat-form-field>
+        
+        
+            <mat-form-field>
+                <mat-label>VideoURL</mat-label>
+                <input matInput type="number" id="VideoURL" formControlName="VideoURL" placeholder="VideoURL">
+                
+            </mat-form-field>
+        
+        
+        
+
+        <button mat-raised-button color="primary" (click)="onCreateExercise()" [disabled]="ExerciseForm.invalid">Create exercise</button>
+
+    </form>
+</mat-card>

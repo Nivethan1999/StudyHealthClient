@@ -1,0 +1,72 @@
+<form [formGroup]="DailyIntakeForm">
+    <mat-form-field>
+      <mat-label>Food List</mat-label>
+      <mat-select formControlName="FoodIDs">
+        <mat-option *ngFor="let food of Food$ | async" [value]="food.foodID">
+          
+            {{ food.name }}  | {{ food.calories }} Calories
+          
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+  
+    <mat-form-field appearance="fill">
+      <mat-label>Choose a date</mat-label>
+      <input
+        matInput
+        [matDatepicker]="picker" 
+        formControlName="Date"
+        [value]="formattedDate"
+      />
+      <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+      <mat-datepicker #picker></mat-datepicker>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Meals</mat-label>
+      <mat-select id="Meals" formControlName="Meals">
+        <mat-option *ngFor="let mealType of mealTypes" [value]="mealType">
+          {{ mealType }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="FoodForm.get('Meals')?.touched && FoodForm.get('Meals')?.hasError('required')">Insert Meals.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Gram</mat-label>
+      <input matInput type="number" formControlName="Gram" placeholder="Gram" />
+      <mat-error *ngIf="DailyIntakeForm.get('Gram')?.touched && DailyIntakeForm.get('Gram')?.hasError('required')">Insert Gramss eaten.</mat-error>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>Calories</mat-label>
+      <input matInput type="number" formControlName="Calories" placeholder="Calories" />
+      <mat-error *ngIf="DailyIntakeForm.get('Calories')?.touched && DailyIntakeForm.get('Calories')?.hasError('required')">Insert Calories.</mat-error>
+    </mat-form-field>
+
+
+
+    
+  
+    <button mat-raised-button color="primary" (click)="registerDailyIntake()" [disabled]="DailyIntakeForm.invalid">Register DailyIntake</button>
+  </form>
+  
+  <form [formGroup]="FoodForm">
+    <mat-card>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput type="text" formControlName="Name" placeholder="Name" />
+        <mat-error *ngIf="FoodForm.get('Name')?.touched && FoodForm.get('Name')?.hasError('required')">Insert Name.</mat-error>
+      </mat-form-field>
+  
+      <mat-form-field>
+        <mat-label>Calories</mat-label>
+        <input matInput type="number"formControlName="Calories" placeholder="Calories pr 100 g" />
+        <mat-error *ngIf="FoodForm.get('Calories')?.touched && FoodForm.get('Calories')?.hasError('required')">Insert Calories.</mat-error>
+      </mat-form-field>
+  
+      <button mat-raised-button color="primary" (click)="registerFood()" [disabled]="FoodForm.invalid">Register Food</button>
+    </mat-card>
+  </form>
+  

@@ -1,0 +1,14 @@
+nav {
+    display: flex;
+    flex: 1;
+    gap: 10px;
+  }
+
+  @media screen and (max-device-width: 480px){
+    nav{
+      display: flex;
+      flex: 1;
+      flex-wrap: wrap;
+    }
+    
+  }

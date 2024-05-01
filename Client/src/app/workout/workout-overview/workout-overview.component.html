@@ -1,0 +1,28 @@
+<div class="workout">
+  <h2>Workout</h2>
+  <mat-form-field appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [(ngModel)]="selectedDate"
+      (dateChange)="onDateChange($event)"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <div *ngIf="data | async as workouts">
+    <h2>Workouts for {{ selectedDate | date : "dd.MM.yyyy" }}</h2>
+    <mat-card *ngFor="let workout of workouts">
+      <mat-card-content>
+        {{ workout.workoutPlan.workoutName }}
+      </mat-card-content>
+      <mat-card-content> {{ workout.duration }} Minutes</mat-card-content>
+      <button mat-raised-button color="primary" (click)="deleteWorkout(workout.workoutID)">Delete Workout</button>
+    </mat-card>
+    
+    
+  </div>
+  <button mat-raised-button color="primary" routerLink="./add-workout" routerLinkActive="active" ariaCurrentWhenActive="page">Add workout</button>
+</div>

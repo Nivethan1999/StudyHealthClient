@@ -1,0 +1,21 @@
+<form [formGroup]="WorkoutPlanForm">
+    <mat-form-field>
+      <mat-label>Workout Name</mat-label>
+      <input matInput type="text" id="WorkoutName" formControlName="WorkoutName" placeholder="Workout Name">
+      <mat-error *ngIf="WorkoutPlanForm.get('WorkoutName')?.touched && WorkoutPlanForm.get('WorkoutName')?.hasError('required')">Insert.</mat-error>
+    </mat-form-field>
+  
+    <mat-form-field>
+      <mat-label>Exercise</mat-label>
+      <mat-select formControlName="ExerciseIDs" multiple>
+        <ngx-mat-select-search placeholderLabel="Search exercise" [formControl]="searchControl"></ngx-mat-select-search>
+        
+        <mat-option *ngFor="let exercise of filteredExercises$ | async" [value]="exercise.exerciseID">
+          {{ exercise.name }} | {{ exercise.type }} Type | {{ exercise.iterations }} Iterations
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  
+    <button mat-raised-button color="primary" (click)="onRegisterData()" [disabled]="WorkoutPlanForm.invalid">Register</button>
+  </form>
+  

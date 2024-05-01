@@ -1,0 +1,32 @@
+<div class="daily">
+  <h1>Daily Intake</h1>
+  <mat-form-field appearance="fill">
+    <mat-label>Choose a date</mat-label>
+    <input
+      matInput
+      [matDatepicker]="picker"
+      [(ngModel)]="selectedDate"
+      (dateChange)="onDateChange($event)"
+    />
+    <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+    <mat-datepicker #picker></mat-datepicker>
+  </mat-form-field>
+
+  <div *ngIf="groupedIntakes$ | async as groupedIntakes">
+    <div *ngFor="let mealType of mealTypes">
+      <h2>{{ mealType }}</h2>
+      <mat-card *ngFor="let dailyIntake of groupedIntakes[mealType]">
+        <mat-card-content>
+          Food Name: {{ dailyIntake.food.name }}
+        </mat-card-content>
+        <mat-card-content> 
+          Calories eaten: {{ dailyIntake.caloriesEaten | number: '.1-2'  }} kcal
+        </mat-card-content>
+        <mat-card-content> 
+          Grams: {{ dailyIntake.gram }}g
+        </mat-card-content>
+        <button mat-raised-button color="warn" (click)="removeFoodFromDailyIntake(dailyIntake.dailyIntakeID,dailyIntake.food.foodID)">Delete Intake</button>
+      </mat-card>
+    </div>
+  </div>
+  <button mat-raised-button color="primary" routerLink="./add" routerLinkActive="active" ariaCurrentWhenActive="page">Add Food</button>

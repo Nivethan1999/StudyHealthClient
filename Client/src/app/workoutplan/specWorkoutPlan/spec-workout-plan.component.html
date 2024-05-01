@@ -1,0 +1,41 @@
+
+<div class="container">
+  <h1 class="title">Workout Plan</h1>
+
+  <table class="styled-table">
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Set</th>
+        <th>Repetitions</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let exercise of specWorkoutPlan$ | async">
+        <td>{{exercise.name}}</td>
+        <td>{{exercise.type}}</td>
+        <td>{{exercise.iterations}}</td>
+        <td>
+          <button mat-raised-button color="warn" (click)="removeExerciseFromSelectedWorkoutPlan(exercise.exerciseID)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <form [formGroup]="Exercise" class="exercise-form">
+    <button mat-raised-button color="primary" (click)="toggleSelect()">Add</button>
+    <div *ngIf="showSelect">
+      <label>Select an Exercise</label>
+      <select formControlName="ExerciseIDs" multiple>
+        <option *ngFor="let exercise of Exercises$ | async " [value]="exercise.exerciseID">
+          {{ exercise.name }} - {{ exercise.type }} - {{ exercise.iterations }}
+        </option>
+      </select>
+      <button mat-raised-button color="primary" (click)="addExerciseToSelectedWorkoutPlan()">Add Selected</button>
+    </div>
+    
+  </form>
+</div>
